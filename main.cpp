@@ -2,7 +2,7 @@
 // Quarter, Year:
 // Lab:
 //
-// This file is to be modified by the student.
+// This file is to be modified b_y the student.
 // main.cpp
 ////////////////////////////////////////////////////////////
 #ifndef __APPLE__
@@ -67,10 +67,21 @@ void GL_render()
     glColor3f(1.0f,0.0f,0.0f);
     // just for example, remove if desired
     if (controlPointsX.size()) {
-        vec2 f;
+        vec2 f = 0;
         float b_x,b_y;
         b_x = 0;
         b_y = 0;
+
+		for(float i = 0 ; i <= 1 ; i += 0.01) {
+			b_x = binomial(controlPointsX.size(),0,i);
+			b_y = binomial(controlPointsY.size(),1,i);
+            
+			for (int j = 0; j < controlPointsX.size(); j++) {
+				f[0] += b_x * controlPointsX[j];
+				f[1] += b_y * controlPointsY[j];
+			}
+			glVertex2f(b_x, b_y);
+		}
     }
     // glVertex2f(-.5f,-.5f);
     // glVertex2f(.5f,-.5f);
