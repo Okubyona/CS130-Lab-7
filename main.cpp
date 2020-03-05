@@ -37,6 +37,27 @@ float combination( int n, int k) {
     return computeFactorial(n) / (computeFactorial(k) * computeFactorial(n - k))
 }
 
+float binomial(int n, int k, float t) {
+    float bezierCurve = 0;
+
+    if (!k) {
+        for (int i = 0; i < n; ++i) {
+            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i)
+                        * controlPointsX[i];
+        }
+
+    }
+
+    else {
+        for (int i = 0; i < n; ++i) {
+            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i)
+                        * controlPointsY[i];
+        }
+    }
+
+    return bezierCurve;
+}
+
 void GL_render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -46,7 +67,7 @@ void GL_render()
     glColor3f(1.0f,0.0f,0.0f);
     // just for example, remove if desired
     if (controlPointsX.size()) {
-        vec2 fOfT
+        vec2 f;
         float b_x,b_y;
         b_x = 0;
         b_y = 0;
