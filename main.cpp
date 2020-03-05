@@ -21,6 +21,16 @@ using namespace std;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 800;
 
+std::vector<float> controlPointsX;
+std::vector<float> controlPointsY;
+
+float computeFactorial( int n) {
+
+    // Lazy solution to dealing with zeroes and negative numbers
+    if (n <= 1) { return 1; }
+
+    return n * computeFactorial(n - 1);
+}
 
 void GL_render()
 {
@@ -30,10 +40,16 @@ void GL_render()
     glBegin(GL_LINES);
     glColor3f(1.0f,0.0f,0.0f);
     // just for example, remove if desired
-    glVertex2f(-.5f,-.5f);
-    glVertex2f(.5f,-.5f);
-    glVertex2f(.5f,.5f);
-    glVertex2f(-.5f,.5f);
+    if (controlPointsX.size()) {
+        vec2 fOfT
+        float b_x,b_y;
+        b_x = 0;
+        b_y = 0;
+    }
+    // glVertex2f(-.5f,-.5f);
+    // glVertex2f(.5f,-.5f);
+    // glVertex2f(.5f,.5f);
+    // glVertex2f(-.5f,.5f);
     glEnd();
     glFlush();
 }
@@ -52,6 +68,9 @@ void GL_mouse(int button,int state,int x,int y)
         double px,py,dummy_z; // we don't care about the z-value but need something to pass in
         gluUnProject(x,y,0,mv_mat,proj_mat,vp_mat,&px,&py,&dummy_z);
         glutPostRedisplay();
+
+            controlPointsX.push_back(px);
+            controlPointsY.push_back(py);
     }
 }
 
@@ -64,7 +83,7 @@ void GLInit(int* argc, char** argv)
 
     //glMatrixMode(GL_PROJECTION_MATRIX);
     //glOrtho(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT, -1, 1);
-    glutCreateWindow("CS 130 - <Insert Name Here>");
+    glutCreateWindow("CS 130 - <Andrew Bazua>");
     glutDisplayFunc(GL_render);
     glutMouseFunc(GL_mouse);
 }
