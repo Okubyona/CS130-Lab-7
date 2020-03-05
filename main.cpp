@@ -24,12 +24,17 @@ const int WINDOW_HEIGHT = 800;
 std::vector<float> controlPointsX;
 std::vector<float> controlPointsY;
 
-float computeFactorial( int n) {
+float computeFactorial( int i) {
 
     // Lazy solution to dealing with zeroes and negative numbers
-    if (n <= 1) { return 1; }
+    if (i <= 1) { return 1; }
 
-    return n * computeFactorial(n - 1);
+    return i * computeFactorial(i - 1);
+}
+
+float computeCombinations( int i, int j) {
+
+    return computeFactorial(i) / (computeFactorial(j) * computeFactorial(i - j))
 }
 
 void GL_render()
