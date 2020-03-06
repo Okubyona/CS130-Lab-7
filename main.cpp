@@ -42,7 +42,7 @@ float binomial(int n, int k, float t) {
 
     if (!k) {
         for (int i = 0; i < n; ++i) {
-            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i)
+            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i))
                         * controlPointsX[i];
         }
 
@@ -50,7 +50,7 @@ float binomial(int n, int k, float t) {
 
     else {
         for (int i = 0; i < n; ++i) {
-            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i)
+            bezierCurve += combination(n, i) * pow(t,i) * pow((1 - t), (n - i))
                         * controlPointsY[i];
         }
     }
