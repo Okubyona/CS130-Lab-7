@@ -29,12 +29,12 @@ float factorial( int n) {
     // Lazy solution to dealing with zeroes and negative numbers
     if (n <= 1) { return 1; }
 
-    return i * computeFactorial(n - 1);
+    return n * factorial(n - 1);
 }
 
 float combination( int n, int k) {
 
-    return computeFactorial(n) / (computeFactorial(k) * computeFactorial(n - k))
+    return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
 float binomial(int n, int k, float t) {
@@ -67,7 +67,6 @@ void GL_render()
     glColor3f(1.0f,0.0f,0.0f);
     // just for example, remove if desired
     if (controlPointsX.size()) {
-        vec2 f = 0;
         float b_x,b_y;
         b_x = 0;
         b_y = 0;
@@ -75,11 +74,7 @@ void GL_render()
 		for(float i = 0 ; i <= 1 ; i += 0.01) {
 			b_x = binomial(controlPointsX.size(),0,i);
 			b_y = binomial(controlPointsY.size(),1,i);
-            
-			for (int j = 0; j < controlPointsX.size(); j++) {
-				f[0] += b_x * controlPointsX[j];
-				f[1] += b_y * controlPointsY[j];
-			}
+
 			glVertex2f(b_x, b_y);
 		}
     }
@@ -120,7 +115,7 @@ void GLInit(int* argc, char** argv)
 
     //glMatrixMode(GL_PROJECTION_MATRIX);
     //glOrtho(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT, -1, 1);
-    glutCreateWindow("CS 130 - <Andrew Bazua>");
+    glutCreateWindow("CS 130 - <abazu001>");
     glutDisplayFunc(GL_render);
     glutMouseFunc(GL_mouse);
 }
